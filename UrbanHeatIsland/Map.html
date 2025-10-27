@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta charset="utf-8" />
+    <script type='text/javascript' src='http://www.bing.com/api/maps/mapcontrol?callback=GetMap&key=AhT0NlT2srFLP6icg6-7D2faMVsYs9XuLczBsNwFloUssPGYyk148BRNKsWF3' async defer></script>
+
+</head>
+<body>
+    <div id="myMap" style="position:relative;"></div>
+    <script type='text/javascript'>
+    var map;
+
+    function GetMap() {
+
+        map = new Microsoft.Maps.Map('#myMap', {});
+        Microsoft.Maps.Events.addHandler(map, 'click', function (e) { set_latitudes_and_longitude(e); });
+    }
+
+    function set_latitudes_and_longitude(map)
+    {
+
+        console.log(map.location.latitude);
+        console.log(map.location.longitude);
+
+
+window.open('https://power.larc.nasa.gov/api/temporal/daily/point?parameters=T2M,PRECTOT&community=RE&longitude='+map.location.longitude.toString()+'&latitude='+map.location.latitude.toString()+'&start=20250101&end=20250930&format=CSV');
+alert('Location is selected. Latitude='+map.location.latitude.toString() + ' Longitude=' + map.location.longitude.toString());
+        // How can I write something like 
+        // map.getLat or map.getLong?
+        
+    }
+</script>
+</body>
+</html>
